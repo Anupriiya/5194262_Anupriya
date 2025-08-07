@@ -1,0 +1,21 @@
+char* timeConversion(char* s) {
+    static char result[9];
+    int hour;
+    char am_pm[3];
+    sscanf(s, "%2d:%*2d:%*2d%2s" , &hour , am_pm);
+    
+    if (strcmp(am_pm, "AM") == 0) {
+        if (hour == 12) hour = 0; {
+            
+        }
+        
+    }else {
+        if (hour != 12) hour += 12; {
+            
+        }
+    }
+    snprintf (result ,sizeof(result), "%02d%s" , hour , s + 2 );
+    result[8] = '\0';
+     return result;
+
+}
