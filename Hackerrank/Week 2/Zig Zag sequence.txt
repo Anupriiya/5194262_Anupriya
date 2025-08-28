@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+int cmpfunc(const void *a, const void *b) {
+    return (*(int *)a - *(int *)b);
+}
+int t;
+    scanf("%d", &t);
+
+    while (t--) {
+        int n;
+        scanf("%d", &n);
+        int arr[n];
+
+        for (int i = 0; i < n; i++) {
+            scanf("%d", &arr[i]);
+        }
+
+        
+        qsort(arr, n, sizeof(int),cmpfunc);
+
+        
+         if (n > 2) {
+            // Step 2: swap middle and last
+            int mid = (n + 1) / 2 - 1;
+            int temp = arr[mid];
+            arr[mid] = arr[n - 1];
+            arr[n - 1] = temp;
+
+            // Step 3: reverse the second half (excluding last)
+            int st = mid + 1, ed = n - 2;
+            while (st < ed) {
+                temp = arr[st];
+                arr[st] = arr[ed];
+                arr[ed] = temp;
+                st++;
+                ed--;
+            }
+        }
+
+        // Step 4: print result
+        for (int i = 0; i < n; i++) {
+            if (i > 0) printf(" ");
+            printf("%d", arr[i]);
+        }
+        printf("\n");
+    }
+
+return 0;
+
+}
